@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Test 1!</title>
+</head>
+
+<body>
+    <div error>
+        <div !></div>
+        <div !notrealfn></div>
+    </div>
+    <div console>
+        <div !console:test>console1</div>
+    </div>
+    <div class>
+        <div !+:test1>class1</div>
+        <div !+:>class2</div>
+        <div !+>class3</div>
+        <div !+:test1:test2>class4</div>
+        <div !+:test1:test2 class="remain">class5</div>
+        <div !+:test1:test2 class="test1">class6</div>
+    </div>
+    <div hash>
+        <div !#>hash1</div>
+        <div !#:test1>hash2</div>
+        <div !#:test1 href="/">hash3</div>
+        <div !#:test1 href="#">hash4</div>
+        <div !#:test1 href="#test">hash5</div>
+    </div>
+    <div icon>
+        <div !icon:fa:test>icon1</div>
+        <div !i:gly:test>icon2</div>
+        <div !i:ion:test>icon3</div>
+        <div !i:oi:test>icon4</div>
+        <div !i:fa:test:5>icon5</div>
+        <div !i:fa:test:5:s>icon6</div>
+    </div>
+    <div id>
+        <div !id:test>id1</div>
+    </div>
+    <div exclaim>
+        <div !!:default>exclaim1</div>
+        <div !!:one>exclaim2</div>
+        <div !!::one>exclaim3</div>
+        <div !!:one:two>exclaim4</div>
+        <div !!>exclaim5</div>
+        <div !! !!:one>exclaim6</div>
+        <div !!:one:>exclaim7</div>
+        <div !!:one:invalid>exclaim8</div>
+    </div>
+    <div style>
+        <div !style:color:blue !style:font-size:10px>style1</div>
+        <div !style:notreal:blue>style2</div>
+        <div !style>style3</div>
+        <div !style:fake>style3</div>
+    </div>
+    <div hide>
+        <div>hide1</div>
+        <div !hide>hide2</div>
+    </div>
+</body>
+<script src="../js/onebang.min.js"></script>
+<script>
+    onebang({
+        dev: true,
+        debug: true,
+        functions: {
+            exclaim: {
+                default: 'testdef',
+                one: 'test1',
+                two: 'test2'
+            }
+        }
+    });
+</script>
+
+</html>

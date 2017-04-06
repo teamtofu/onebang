@@ -1,0 +1,30 @@
+{
+  "name": "onebang",
+  "version": "1.0.0",
+  "description": "One Bang (aka 1!) turns attributes starting with ! into an easy way to write code shorthand.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "minify": "uglifyjs ./js/onebang.js -o ./js/onebang.min.js -c -m"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/teamtofu/onebang.git"
+  },
+  "keywords": [
+    "one",
+    "bang",
+    "attribute",
+    "html",
+    "dom"
+  ],
+  "author": "Russell Steadman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/teamtofu/onebang/issues"
+  },
+  "homepage": "https://github.com/teamtofu/onebang#readme"
+}
