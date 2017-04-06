@@ -61,6 +61,7 @@ Processing happens automatically when the document's body is updated [for most b
 ## 1! Functions
 
 Basics
+
 ```html
 <div !class:one:two></div> <!-- !(name of function):(variable):(another variable) -->
 ```
@@ -68,39 +69,54 @@ Basics
 An unlimited number of variables can be added on for functions that accept them.
 
 Class
+
 Names: 'class', 'c'
+
 Accepts: Unlimited classes
+
 ```html
 <div !class:one:two:three></div> <!-- <div class="one two three"></div> -->
 <div !c:one:two:three></div> <!-- <div class="one two three"></div> -->
 ```
 
 Style
+
 Names: 'style', 's'
+
 Accepts: One css attribute and one css value
+
 ```html
 <div !style:color:red !style:font-size:14px></div> <!-- <div style="color:red;font-size:14px;"></div> -->
 <div !s:width:20%></div> <!-- <div style="width:20%;"></div> -->
 ```
 
 Href Hash
+
 Names: 'hash', '#'
+
 Accepts: No or one hash value
+
 ```html
 <div !hash:test></div> <!-- <div href="#test"></div> -->
 <div !#></div> <!-- <div href="#"></div> -->
 ```
 
 ID
+
 Names: 'id'
+
 Accepts: One id value
+
 ```html
 <div !id:cool></div> <!-- <div id="cool"></div> -->
 ```
 
 Icon
+
 Names: 'icon', 'i'
+
 Accepts: One icon library and one icon ending (for extra FontAwesome options see below)
+
 ```html
 <div !i:fa:code></div> <!-- FontAwesome <div class="fa fa-code"></div> -->
 <div !icon:fa:code:3></div> <!-- FontAwesome <div class="fa fa-code fa-3x"></div> -->
@@ -111,8 +127,11 @@ Accepts: One icon library and one icon ending (for extra FontAwesome options see
 ```
 
 Exclaim
+
 Names: 'exclaim', '!'
+
 Accepts: Unlimited number of exclaim classes
+
 ```js
 //settings
 {
@@ -125,6 +144,7 @@ Accepts: Unlimited number of exclaim classes
     }
 }
 ```
+
 ```html
 <div !!></div> <!-- <div class="defaultclass"></div> -->
 <div !!:o></div> <!-- <div class="otherclass"></div> -->
@@ -133,8 +153,11 @@ Accepts: Unlimited number of exclaim classes
 ```
 
 Hide
+
 Names: 'hide'
+
 Accepts: None
+
 ```html
 <div !hide></div> <!-- <div style="display:none;"></div> -->
 ```
