@@ -46,7 +46,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         'class': function (m) {
             addclass(m, this);
         },
-        '+': 'class',
+        'c': 'class',
         'hash': function (m) {
             var href = this.getAttribute('href');
             href = typeof href === 'string'?href.split('#'):['',''];
@@ -58,7 +58,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             if (m[0]=='fa'||m[0]=='fontawesome') {
                 addclass(['fa','fa-'+m[1],(m[2]?'fa-'+m[2]+'x':''),(m[3]?'fa-spin':'')],this);
             } else if (m[0]=='ion'||m[0]=='ionicon') {
-                addclass(['ion','ion-'+m[1]],this);
+                addclass(['ion','icon','ion-'+m[1]],this);
             } else if (m[0]=='gly'||m[0]=='glyph'||m[0]=='glyphicon') {
                 addclass(['glyphicon','glyphicon-'+m[1]],this);
             } else if (m[0]=='oi'||m[0]=='openicon') {
@@ -95,6 +95,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             if (!m[0]||!m[1]) return error('The 1! !style doesn\'t have two variables.');
             this.style[m[0]] = m[1].replace(/\_/g,' ');
         },
+        's': 'style',
         'hide': function () {
             this.style.display = 'none';
         }
