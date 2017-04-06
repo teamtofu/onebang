@@ -1,1 +1,5 @@
 theme: jekyll-theme-slate
+title: One Bang - Smart Attributes
+description: One Bang turns html attributes starting with an exclamation point into an easy way to write code shorthand.
+show_downloads: true
+google_analytics: 
