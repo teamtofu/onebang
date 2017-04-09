@@ -1,4 +1,4 @@
-# onebang 
+# One Bang 
 [![NPM version](https://nodei.co/npm/onebang.png)](https://npmjs.org/package/onebang)
 
 > One Bang (aka 1!) turns html attributes starting with ! into an easy way to write code shorthand.
@@ -14,7 +14,7 @@ $ npm install --save onebang
 Before
 ```html
 <div !id:example>
-    <div !id:test !+:testclass !style:color:red>
+    <div !id:test !c:testclass !s:color:red>
         <i !i:fa:code></i> Test
     </div>
     <a !#:test>Scroll</a>
@@ -60,7 +60,7 @@ Processing happens automatically when the document's body is updated [for most b
 
 ## 1! Functions
 
-Basics
+### Basics
 
 ```html
 <div !class:one:two></div> <!-- !(name of function):(variable):(another variable) -->
@@ -68,7 +68,7 @@ Basics
 
 An unlimited number of variables can be added on for functions that accept them.
 
-Class
+#### Class
 
 Names: 'class', 'c'
 
@@ -79,7 +79,7 @@ Accepts: Unlimited classes
 <div !c:one:two:three></div> <!-- <div class="one two three"></div> -->
 ```
 
-Style
+#### Style
 
 Names: 'style', 's'
 
@@ -90,7 +90,7 @@ Accepts: One css attribute and one css value
 <div !s:width:20%></div> <!-- <div style="width:20%;"></div> -->
 ```
 
-Href Hash
+#### Href Hash
 
 Names: 'hash', '#'
 
@@ -101,7 +101,7 @@ Accepts: No or one hash value
 <div !#></div> <!-- <div href="#"></div> -->
 ```
 
-ID
+#### ID
 
 Names: 'id'
 
@@ -111,7 +111,7 @@ Accepts: One id value
 <div !id:cool></div> <!-- <div id="cool"></div> -->
 ```
 
-Icon
+#### Icon
 
 Names: 'icon', 'i'
 
@@ -126,7 +126,7 @@ Accepts: One icon library and one icon ending (for extra FontAwesome options see
 <div !i:oi:person></div> <!-- Open Iconic <div class="oi oi-person"></div> -->
 ```
 
-Exclaim
+#### Exclaim
 
 Names: 'exclaim', '!'
 
@@ -152,7 +152,7 @@ Accepts: Unlimited number of exclaim classes
 <div !!:o:></div> <!-- <div class="defaultclass otherclass"></div> -->
 ```
 
-Hide
+#### Hide
 
 Names: 'hide'
 
@@ -164,4 +164,4 @@ Accepts: None
 
 ## License
 
-MIT © [Russell Steadman](https://github.com/teamtofu/onebang)
+[MIT](https://opensource.org/licenses/MIT) © [Russell Steadman](https://github.com/teamtofu/onebang)
