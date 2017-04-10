@@ -15,6 +15,13 @@
     + [Icon](#icon)
     + [Exclaim](#exclaim)
     + [Hide](#hide)
++ [Plugins](#plugins)
+    + [What is a plugin?](#what-is-a-plugin)
+    + [How do OneBang functions work?](#how-do-onebang-functions-work)
+    + [Adding Plugins](#adding-plugins)
+        + [onebang.addplugin](#onebangaddplugin)
+        + [onebang.addplugins](#onebangaddplugins)
++ [Angular](#angular)
 + [License](#license)
 
 ## Installation
@@ -188,8 +195,109 @@ Here is a 1! for the sake of example:
 !class:example:onebang
 ```
 The namespace _class_ comes after the bang and before the connector.
-This would run the class plugin which comes with OneBang. The function
-For example, in the !class:red plugin, the namespace 'class' comes after the bang and before the connector;
+This would run the function for _class_ which comes with OneBang.
+```js
+function associatedfunction (/*variables*/) {
+    //classes are added here
+}
+```
+
+### How do OneBang functions work?
+
+All important variables are passed to the plugin's function when it is run.
+```js
+function plugin (input /*Array*/, options /*Object*/, version /*String*/, error /*Function*/, log /*Function*/ ) {
+    this /*Object*/;
+    //...
+}
+```
+1. **input** is an array of all bang variables (e.g. _!class:one:two_ => _["one","two"]_)
+2. **options** is the options object of the function (see [Settings Object](#settings-object), for an example see [1! Exclaim](#exclaim))
+3. **version** is the OneBang version, for compatibility
+4. **error** is a function for logging errors that takes a string description
+5. **log** is a function for logging information that takes a string description
++ **this** is DOM node of the element with the 1!
+
+### Adding Plugins
+
+#### onebang.addplugin
+
+This is a function that adds one plugin.
+
+```js
+var pluginfunction = function (input, opts, v, err, log) {
+    log('Running plugin');
+    if (typeof input[0] ==='string'&&input[0]) {
+        this.setAttribute('onclick','alert("'+input[0]+'");');
+    } else {
+        err('There are no variables');
+    }
+};
+onebang.addplugin('example', pluginfunction);
+```
+```html
+<div !example:Hello!></div> <!-- <div onclick="alert(\"Hello!\")"></div> -->
+```
+
+#### onebang.addplugins
+
+This is a function that adds many plugins at once.
+
+```js
+var plugins = {
+    red: function () {
+        this.style.color = 'red';
+    },
+    large: function () {
+        this.style['font-size'] = '30px';
+    }
+};
+onebang.addplugins(plugins);
+```
+```html
+<div !red !large></div> <!-- <div style="color: red; font-size: 30px;"></div> -->
+```
+
+## Angular
+
+> Integration with [Angular.js](http://angularjs.org/) is simple and automatic.
+
+```html
+<script src="angular.js"></script>
+<script src="onebang.js"></script>
+<script src="mycode.js"></script>
+```
+```js
+//mycode.js
+
+var app = angular.module('test',['oneBang']);
+app.run(['$oneBang', function ($oneBang) {
+    $oneBang({/* options */})); //has all of the same variables as window.onebang
+}]);
+//... bootstrap app
+```
+
+To ensure that older browsers can use OneBang with automatic DOM updates, a singular "!" attribute can be added to the parent element(s) of the areas that should be searched for 1!s.
+This is only necessary if you are using templates (HTML that is not in the body on page load), and it can be use in place of intervals.
+
+```html
+<!--Example-->
+<script id="template.html" type="text/ng-template">
+    <div ! !s:color:red><div !s:color:blue></div></div>
+    <!--<div style="color: red;"><div style="color: blue;"></div></div>-->
+</script>
+```
+
+## Intervals
+
+OneBang makes use of [MutationObserver](http://caniuse.com/#feat=mutationobserver) which is supported by the modern version of all modern browsers with the sole exception of Opera Mini (which doesn't support many other Javascript features).
+
+<script src="//cdn.jsdelivr.net/caniuse-embed/1.0.1/caniuse-embed.min.js"></script>
+
+<p class="ciu_embed" data-feature="mutationobserver" data-periods="future_1,current,past_1,past_2">
+  <a href="http://caniuse.com/#feat=mutationobserver">Can I Use mutationobserver?</a> Data on support for the mutationobserver feature across the major browsers from caniuse.com.
+</p>
+
 
 
 ## License
