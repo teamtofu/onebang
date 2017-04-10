@@ -292,13 +292,11 @@ This is only necessary if you are using templates (HTML that is not in the body 
 
 OneBang makes use of [MutationObserver](http://caniuse.com/#feat=mutationobserver) which is supported by the modern version of all modern browsers with the sole exception of Opera Mini (which doesn't support many other Javascript features).
 
-<script src="//cdn.jsdelivr.net/caniuse-embed/1.0.1/caniuse-embed.min.js"></script>
-
 <p class="ciu_embed" data-feature="mutationobserver" data-periods="future_1,current,past_1,past_2">
   <a href="http://caniuse.com/#feat=mutationobserver">Can I Use mutationobserver?</a> Data on support for the mutationobserver feature across the major browsers from caniuse.com.
 </p>
 
-
+<script async defer src="//cdn.jsdelivr.net/caniuse-embed/1.0.1/caniuse-embed.min.js"></script>
 
 ## License
 
