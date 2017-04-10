@@ -1,4 +1,4 @@
-# One Bang 
+# OneBang 
 [![NPM version](https://nodei.co/npm/onebang.png)](https://npmjs.org/package/onebang)
 
 > One Bang (aka 1!) turns html attributes starting with ! into an easy way to write code shorthand.
@@ -11,8 +11,11 @@
     + [Basics](#basics)
     + [Class](#class)
     + [Style](#style)
-    + [Href Hash](#href-hash)
-
+    + [ID](#id)
+    + [Icon](#icon)
+    + [Exclaim](#exclaim)
+    + [Hide](#hide)
++ [License](#license)
 
 ## Installation
 
@@ -172,6 +175,22 @@ Accepts: None
 ```html
 <div !hide></div> <!-- <div style="display:none;"></div> -->
 ```
+
+## Plugins
+
+> Plugins allow developers to adapt OneBang to their own needs.
+
+### What is a plugin?
+
+A plugin is a function that is executed when a specified OneBang namespace is used.
+Here is a 1! for the sake of example:
+```
+!class:example:onebang
+```
+The namespace _class_ comes after the bang and before the connector.
+This would run the class plugin which comes with OneBang. The function
+For example, in the !class:red plugin, the namespace 'class' comes after the bang and before the connector;
+
 
 ## License
 
