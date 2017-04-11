@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="test">
 
 <head>
     <title>Test 1!</title>
+
+    <script type="text/ng-template" id="/template.html">
+        <div !s:color:red>Content</div>
+    </script>
 </head>
 
-<body>
+<body !>
     <div>
         <h1 !style:text-align:center>1! Tests</h1>
     </div>
@@ -110,19 +114,23 @@
         MIT &copy; Russell Steadman
     </div>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.min.js"></script>
 <script src="../dist/onebang.js"></script>
 <script>
-    onebang({
-        developerMode: true,
-        debugMode: true,
-        functions: {
-            exclaim: {
-                default: 'testdef',
-                one: 'test1',
-                two: 'test2'
+    var app = angular.module('test',['oneBang']);
+    app.run(['$oneBang',function($onebang) {
+        $onebang({
+            developerMode: true,
+            debugMode: true,
+            functions: {
+                exclaim: {
+                    default: 'testdef',
+                    one: 'test1',
+                    two: 'test2'
+                }
             }
-        }
-    });
+        });
+    }]);
 </script>
 
 </html>

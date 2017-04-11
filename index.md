@@ -1,12 +1,17 @@
 # OneBang 
 [![NPM version](https://nodei.co/npm/onebang.png)](https://npmjs.org/package/onebang)
 
-> One Bang (aka 1!) turns html attributes starting with ! into an easy way to write code shorthand.
+> OneBang (aka 1!) turns html attributes starting with ! into an easy way to write code shorthand.
+
+<a class="github-button" href="https://github.com/teamtofu/onebang" data-style="mega" aria-label="Star teamtofu/onebang on GitHub">Star OneBang</a>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
 
 # Table of Contents
 + [Installation](#installation)
 + [Example](#installation)
 + [Settings Object](#settings-object)
+    + [Built-in Bang Prefixes](#built-in-bang-prefixes)
 + [1! Functions](#1-functions)
     + [Basics](#basics)
     + [Class](#class)
@@ -21,7 +26,12 @@
     + [Adding Plugins](#adding-plugins)
         + [onebang.addplugin](#onebangaddplugin)
         + [onebang.addplugins](#onebangaddplugins)
+    + [Aliasing](#aliasing)
 + [Angular](#angular)
++ [Intervals](#intervals)
+    + [onebang.interval](#onebanginterval)
++ [Manual Interpretation](#manual-interpretation)
+    + [onebang.interpret](#onebanginterpret)
 + [License](#license)
 
 ## Installation
@@ -69,13 +79,38 @@ Processing happens automatically when the document's body is updated [for most b
 
 ```js
 {
-    dev: false, /* Enable developer mode (turn off for production) */
-    debug: false, /* Enable debug mode */
-    bang: '!', /* Attribute prefix */
-    bangreg: /^\!.*$/, /* Regex for identifying if an attribute should be processed */
-    connector: ':', /* Connector for variables */
-    connectorreg: /\:/g, /* Regex for all connectors in a string */
-    functions: {} /* Function specific options */
+    developerMode: false, /* Enable developer mode (turn off for production) */
+    debugMode: false, /* Enable debug mode */
+    userBang: '!', /* Attribute prefix */
+    userBangRegex: /^\!.*$/, /* Regex for identifying if an attribute should be processed */
+    userConnector: ':', /* Connector for variables */
+    userConnectorRegex: /\:/g, /* Regex for all connectors in a string */
+    functions: {}, /* Function specific options */
+    removeBangPrefixes: [] /* Remove built-in bang prefixes (only necessary if there is a compatibility issue) */
+}
+```
+
+### Built-in Bang Prefixes
+
+For convenience, some prefix options are built into the system that can be used interchangibly with the **_!_**.
+
+```html
+<div !style:color:red></div> <!-- Single bang mark -->
+<div B_style:color:red></div> <!-- Letter B and underscore (Compliant with stricter syntax) -->
+<div b_style:color:red></div>
+<div __style:color:red></div> <!-- Double underscore -->
+<div ::style:color:red></div> <!-- Double colon -->
+<div 1style:color:red></div> <!-- Single number 1 -->
+<!--All result in: <div style="color: red;"></div>-->
+<!--Learn more about the syntax below-->
+```
+
+To remove some of these from OneBang, add an exception to the [settings object](#settings-object).
+
+```js
+{
+    // ...
+    removeBangPrefixes: ['__','::','!'] //OneBang will not interpret these prefixes
 }
 ```
 
@@ -297,6 +332,30 @@ OneBang makes use of [MutationObserver](http://caniuse.com/#feat=mutationobserve
 </p>
 
 <script async defer src="//cdn.jsdelivr.net/caniuse-embed/1.0.1/caniuse-embed.min.js"></script>
+
+However, intervals are available for use to ensure that websites using templates can support older browsers.
+
+### onebang.interval
+
+```js
+onebang.interval(500); //starts an interval executing every 500 milliseconds
+onebang.interval(false); //stops the interval
+```
+
+## Manual Interpretation
+
+DOM nodes can be manually interpreted by passing them through the [onebang.interpret](#onebanginterpret) function. If you plan on using OneBang manually or with direct DOM manipulation, it is recommended that you use the '**_B\__**' prefix rather than '**_!_**', which is not valid XML.
+
+### onebang.interpret
+
+This function runs OneBang manually on any DOM node.
+
+```js
+var example = document.createElement('div');
+example.setAttribute('b_style:color:red','');
+onebang.interpret(example);
+// example -> <div style="color: red;"></div>
+```
 
 ## License
 

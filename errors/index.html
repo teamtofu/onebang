@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>OneBang Error</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway|Roboto" rel="stylesheet">
+</head>
+
+<body>
+    <div>
+        <h1 1c:f2 1s:text-align:center>OneBang <b 1s:color:red>Error</b></h1>
+    </div>
+    <hr>
+    <div 1!>
+        <h4 1id:code>Error Code: </h4>
+        <div 1id:description></div>
+    </div>
+    <hr>
+    <div 1c:f2 1s:text-align:center>
+        Still having a problem? <a href="https://github.com/teamtofu/onebang/issues" target="_blank" 1s:text-decoration:none>Open an issue on Github.</a>
+    </div>
+    <div 1c:f2 1s:text-align:center 1s:margin-top:5vh>
+        MIT &copy; Russell Steadman
+    </div>
+</body>
+<script src="../dist/onebang.js"></script>
+<script>
+    onebang({functions:{exclaim:{default:'f1'}}});
+    function q(a){var b=window.location.search.substring(1);var c=b.split("&");for(var i=0;i<c.length;i++){var d=c[i].split("=");if(d[0]==a){return decodeURIComponent(d[1])}}return('')}
+    console.log(q('error'));
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            window.error = JSON.parse(xhttp.responseText);
+            document.getElementById('code').innerHTML += q('error');
+            var newerror = error[q('error')].toString().replace(/\@1/g,q('one')).replace(/\@2/g,q('two')).replace(/\@3/g,q('three'));
+            document.getElementById('description').innerHTML = newerror;
+        }
+    };
+    xhttp.open("GET", "error.json?r="+Math.random().toString(), true);
+    xhttp.send();
+</script>
+<style>
+.f1 {
+    font-family: 'Roboto', sans-serif;
+}
+.f2 {
+    font-family: 'Raleway', sans-serif;
+}
+</style>
+</html>

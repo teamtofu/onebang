@@ -1,1 +1,1 @@
-module.exports=require("./js/onebang");
+module.exports=require("./dist/onebang");

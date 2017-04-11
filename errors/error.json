@@ -1,0 +1,12 @@
+{
+    "aa":"OneBang requires the \"document\" object to be present.",
+    "ab":"OneBang requires <body> tags to be present.",
+    "ac":"OneBang is unable to automatically update the DOM.",
+    "ad":"The OneBang \"@1\" resolved to \"@2\" which is not a function.",
+    "ae":"Invalid arguments were passed to onebang.interval",
+    "af":"\"setInterval\" is unavailable in this window.",
+    "ag":"There is no window object for OneBang to attach.",
+    "ah":"OneBang settings: @1 was @2, expected @3.",
+    "ai":"The OneBang !exclaim doesn't have the \"@1\" variable.",
+    "aj":"The OneBang !style doesn't have two variables."
+}

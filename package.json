@@ -1,6 +1,6 @@
 {
   "name": "onebang",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "One Bang (aka 1!) turns attributes starting with ! into an easy way to write code shorthand.",
   "main": "index.js",
   "directories": {
@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "minify": "uglifyjs ./js/onebang.js -o ./js/onebang.min.js -c -m"
+    "dist": "gulp"
   },
   "repository": {
     "type": "git",
@@ -26,5 +26,22 @@
   "bugs": {
     "url": "https://github.com/teamtofu/onebang/issues"
   },
-  "homepage": "https://github.com/teamtofu/onebang#readme"
+  "homepage": "https://onebang.js.org/",
+  "autoupdate": {
+    "source": "git",
+    "target": "git://github.com/teamtofu/onebang.git",
+    "basePath": "/dist",
+    "files": [
+      "onebang.js",
+      "onebang.min.js"
+    ]
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-file-insert": "^1.0.3",
+    "gulp-insert-lines": "0.0.4",
+    "gulp-jslint": "^1.0.10",
+    "gulp-minify": "0.0.15"
+  }
 }
