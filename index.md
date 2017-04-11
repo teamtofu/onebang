@@ -293,6 +293,33 @@ onebang.addplugins(plugins);
 <div !red !large></div> <!-- <div style="color: red; font-size: 30px;"></div> -->
 ```
 
+### Aliasing
+
+Adding aliases is simple. Just use onebang.addplugin or onebang.addplugins and replace the function with a string value of the real function.
+
+```js
+// ex is an alias of example
+onebang.addplugin('ex','example');
+```
+
+In the function options in the [settings object](#settings-object), use the original option name and not the alias.
+
+```js
+{
+    // ...
+    functions: {
+        // This is will work for both ex and example
+        example: {
+            test: 'works'
+        },
+        // Since ex is an alias, this will not work
+        ex: {
+            test: 'fails'
+        }
+    }
+}
+```
+
 ## Angular
 
 > Integration with [Angular.js](http://angularjs.org/) is simple and automatic.
