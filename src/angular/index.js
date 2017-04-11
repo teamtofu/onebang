@@ -9,14 +9,16 @@ if (has.angular) {
         };
         return function (opts) {
             return traversedom(opts);
-        }
+        };
     });
-    var linking = function ($scope, dom, attrs) {
-        if (typeof dom[0] === type.o) dom = dom[0];
-        window.onebang.interpret(dom);
-    };
+    var linking = function () {return {
+        link: function ($scope, dom, attrs) {
+            if (typeof dom[0] === type.o) dom = dom[0];
+            window.onebang.interpret(dom);
+        }
+    };};
     var dirs = ['!','bang','::'];
     for (var i in dirs) {
-        app.directive(dirs[i], function () {return {link: linking};});
+        app.directive(dirs[i], linking);
     }
 }

@@ -38,10 +38,8 @@
   },
   "devDependencies": {
     "gulp": "^3.9.1",
-    "gulp-concat": "^2.6.1",
     "gulp-file-insert": "^1.0.3",
-    "gulp-insert-lines": "0.0.4",
-    "gulp-jslint": "^1.0.10",
-    "gulp-minify": "0.0.15"
+    "gulp-minify": "0.0.15",
+    "gulp-regex-replace": "^0.2.3"
   }
 }

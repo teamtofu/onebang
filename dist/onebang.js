@@ -19,8 +19,10 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-
+// Version: 1.0.1
 (function () {
+
+    'use strict';
 
     var onebangbind = 'onebang';
 
@@ -40,12 +42,11 @@ SOFTWARE.
         document: (typeof document === type.o) && !!document,
         body: (typeof document.body === type.o) && !!document.body,
         mutation: (typeof MutationObserver === type.f) && !!MutationObserver,
-        interval: (typeof setInterval === type.f) && (typeof clearInterval === type.f) && !!setInterval && !!clearInterval,
+        interval: (typeof setInterval === type.f) && (typeof clearInterval === type.f) && !!setInterval && !!clearInterval
     };
 
     var errorurl = function (code,varone,vartwo,varthree) {
-        return 'http://teamtofu.github.io/onebang/errors/?error=' + code 
-        + '&one=' + encodeURIComponent(varone) + '&two=' + encodeURIComponent(vartwo) + '&three=' + encodeURIComponent(varthree);
+        return 'http://teamtofu.github.io/onebang/errors/?error=' + code  + '&one=' + encodeURIComponent(varone) + '&two=' + encodeURIComponent(vartwo) + '&three=' + encodeURIComponent(varthree);
     };
 
     var builtin = [{
@@ -181,8 +182,7 @@ SOFTWARE.
 
     var onebang = function (settings) {
 
-        this.version = '/*v*/';
-
+        this.version = '1.0.1';
 
         this.options = {
             developerMode: false,
@@ -210,18 +210,20 @@ SOFTWARE.
 
         has.settings = (typeof settings === type.o) && !!settings;
 
+        var i,o;
+
         if (has.settings) {
-            for (var i in settings) this.options[i] = settings[i];
+            for (i in settings) this.options[i] = settings[i];
         }
 
-        for (var i in verifyopt) {
+        for (i in verifyopt) {
             if (verifyopt[i].split('&').indexOf(typeof this.options[i]) === -1) {
                 throw new Error(errorurl('ah',i,typeof this.options[i],verifyopt[i]));
             }
         }
 
-        for (var o in this.options.removeBangPrefixes) {
-            for (var i in builtin) {
+        for (o in this.options.removeBangPrefixes) {
+            for (i in builtin) {
                 if (this.options.removeBangPrefixes === builtin[i].id) {
                     builtin = builtin.splice(i, 1);
                     break;
@@ -254,10 +256,11 @@ SOFTWARE.
             error(errorurl('ab'));
         }
 
+        var observer;
         if (!has.mutation) {
             error(errorurl('ac'));
         } else {
-            var observer = new MutationObserver(function (mut) {
+            observer = new MutationObserver(function (mut) {
                 for (var i in mut) {
                     this.interpret(document.body);
                 }
@@ -348,18 +351,17 @@ SOFTWARE.
         };
         if (typeof observer === type.o) observer.observe(document.body, mutopts);
 
-        var interval = undefined;
+        var interval;
 
         this.interval = function (msdelay) {
-            if (typeof msdelay !== type.n) var cancel = true;
             if (has.interval) {
-                if (cancel && typeof interval !== 'undefined') {
+                if (typeof msdelay !== type.n && typeof interval !== 'undefined') {
                     clearInterval(interval);
                     interval = undefined;
                     log('Interval-based updates were stopped.');
                 } else if (typeof msdelay === type.n && msdelay > 0) {
                     interval = setInterval(function () {
-                        this.interpret(document.body)
+                        this.interpret(document.body);
                     }.bind(this), msdelay);
                     log('Interval-based updates were started.');
                 } else {
@@ -383,15 +385,17 @@ SOFTWARE.
         };
         return function (opts) {
             return traversedom(opts);
-        }
+        };
     });
-    var linking = function ($scope, dom, attrs) {
-        if (typeof dom[0] === type.o) dom = dom[0];
-        window.onebang.interpret(dom);
-    };
+    var linking = function () {return {
+        link: function ($scope, dom, attrs) {
+            if (typeof dom[0] === type.o) dom = dom[0];
+            window.onebang.interpret(dom);
+        }
+    };};
     var dirs = ['!','bang','::'];
     for (var i in dirs) {
-        app.directive(dirs[i], function () {return {link: linking};});
+        app.directive(dirs[i], linking);
     }
 }
 
