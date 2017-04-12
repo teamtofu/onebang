@@ -24,4 +24,6 @@ gulp.task('dist', function() {
 
 gulp.task('default', ['dist']);
 
-gulp.watch('src/**/*.js', ['default']);
+if (process.env.runtime !== 'travis') {
+    gulp.watch('src/**/*.js', ['default']);
+}
