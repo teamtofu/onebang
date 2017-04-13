@@ -353,6 +353,9 @@ var ini = function (settings) {
 
 if (check().window) {
     window[onebangbind] = ini.bind(this);
+    if (check().module) {
+        module.exports = ini.bind(this);
+    }
 } else if (check().module) {
     module.exports = ini.bind(this);
 } else {

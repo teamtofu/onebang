@@ -36,8 +36,19 @@
 
 ## Installation
 
+> OneBang is available on NPM for browser and [webpack](https://webpack.js.org/) consumption. (Recommended)
+
 ```sh
-$ npm install --save onebang
+$ npm i --save onebang
+```
+
+> CDNs are also available. (Not Recommended)
+
+```html
+<!-- Latest Version -->
+<script src="https://unpkg.com/onebang/dist/onebang.min.js"></script>
+<!-- Specific Version (e.g. 1.0.2) -->
+<script src="https://unpkg.com/onebang@1.0.2/dist/onebang.min.js"></script>
 ```
 
 ## Example

@@ -1,12 +1,29 @@
-# One Bang 
+# OneBang 
 [![NPM version](https://nodei.co/npm/onebang.png)](https://npmjs.org/package/onebang)
 
 > One Bang (aka 1!) turns html attributes starting with ! into an easy way to write code shorthand.
 
 ## Installation
 
+> OneBang is available on NPM for browser and [webpack](https://webpack.js.org/) consumption. (Recommended)
+
 ```sh
-$ npm install --save onebang
+$ npm i --save onebang
+```
+
+> OneBang is also available from [Github](https://github.com/teamtofu/onebang).
+
+<a href="https://github.com/teamtofu/onebang/releases/latest" target="_blank">
+    <button>Download the Latest Version &darr;</button>
+</a>
+
+> CDNs are also available. (Not Recommended)
+
+```html
+<!-- Latest Version -->
+<script src="https://unpkg.com/onebang/dist/onebang.min.js"></script>
+<!-- Specific Version (e.g. 1.0.2) -->
+<script src="https://unpkg.com/onebang@1.0.2/dist/onebang.min.js"></script>
 ```
 
 Read the docs [here](https://onebang.js.org/) and check out the tests [here](https://onebang.js.org/test/).

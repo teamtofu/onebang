@@ -7,8 +7,10 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dist": "gulp"
+    "test": "echo \"Use http-server (npm) and open the test directory.\" && exit 1",
+    "gulp": "gulp",
+    "jshint": "jshint --verbose dist/onebang.js",
+    "eslint": "eslint -c .eslintrc.json dist/onebang.js"
   },
   "repository": {
     "type": "git",
@@ -38,13 +40,13 @@
     ]
   },
   "devDependencies": {
-    "babel-preset-env": "^1.3.3",
     "gulp": "^3.9.1",
-    "gulp-babel": "^6.1.2",
     "gulp-file-insert": "^1.0.3",
     "gulp-iife": "^0.3.0",
     "gulp-license": "^1.1.0",
     "gulp-minify": "0.0.15",
-    "gulp-regex-replace": "^0.2.3"
+    "gulp-regex-replace": "^0.2.3",
+    "gulp-shell": "^0.6.3",
+    "webpack": "^2.3.3"
   }
 }
