@@ -18,7 +18,7 @@ var basics = {
     'icon': function (m) {
         switch (m[0]) {
             case 'fa': case 'fontawesome':
-            addclass(['fa', 'fa-' + m[1], (m[2] ? 'fa-' + m[2] + 'x' : ''), (m[3] ? 'fa-spin' : '')], this);
+            addclass(['fa', 'fa-' + m[1], m[2] ? 'fa-' + m[2] + 'x' : '', m[3] ? 'fa-spin' : ''], this);
             break;
             case 'ion': case 'ionicon':
             addclass(['ion', 'icon', 'ion-' + m[1]], this);

@@ -14,13 +14,13 @@ var has = {};
 
 var check = function () {
     var items = {
-        angular: (typeof angular === type.o) && !!angular,
-        console: (typeof console === type.o) && !!console && !!console.log && !!console.error && !!console.info,
-        alert: (typeof alert === type.f) && !!alert,
-        document: (typeof document === type.o) && !!document,
-        body: (typeof document === type.o) && !!document && (typeof document.body === type.o) && !!document.body,
-        mutation: (typeof MutationObserver === type.f) && !!MutationObserver,
-        interval: (typeof setInterval === type.f) && (typeof clearInterval === type.f) && !!setInterval && !!clearInterval,
+        angular: typeof angular === type.o && !!angular,
+        console: typeof console === type.o && !!console && !!console.log && !!console.error && !!console.info,
+        alert: typeof alert === type.f && !!alert,
+        document: typeof document === type.o && !!document,
+        body: typeof document === type.o && !!document && typeof document.body === type.o && !!document.body,
+        mutation: typeof MutationObserver === type.f && !!MutationObserver,
+        interval: typeof setInterval === type.f && typeof clearInterval === type.f && !!setInterval && !!clearInterval,
         window: typeof window === type.o && !!window,
         module: typeof module !== 'undefined' && module.exports
     };
@@ -174,7 +174,7 @@ var onebang = function (settings) {
         removeBangPrefixes: type.o
     };
 
-    has.settings = (typeof settings === type.o) && !!settings;
+    has.settings = typeof settings === type.o && !!settings;
 
     if (check().settings) {
         for (var za in settings) this.options[za] = settings[za];
@@ -320,13 +320,13 @@ var onebang = function (settings) {
         }, this);
     }
 
-    var interval;
+    var interval = null;
 
     this.interval = function (msdelay) {
         if (check().interval) {
-            if (typeof msdelay !== type.n && typeof interval !== 'undefined') {
+            if (typeof msdelay !== type.n && interval === null) {
                 clearInterval(interval);
-                interval = undefined;
+                interval = null;
                 log('Interval-based updates were stopped.');
             } else if (typeof msdelay === type.n && msdelay > 0) {
                 interval = setInterval(function () {
