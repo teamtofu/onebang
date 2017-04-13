@@ -48,7 +48,7 @@ var check = function () {
         window: typeof window === type.o && !!window,
         module: typeof module !== 'undefined' && module.exports
     };
-    for (var i in items) has[i] = items[i];
+    for (var ze in items) has[ze] = items[ze];
     return has;
 };
 
@@ -62,8 +62,8 @@ var onready;
         var ready = function () {
             if (!readyFired) {
                 readyFired = true;
-                for (var i = 0; i < readyList.length; i++) {
-                    readyList[i].fn.call(this, readyList[i].ctx);
+                for (var zf = 0; zf < readyList.length; zf++) {
+                    readyList[zf].fn.call(this, readyList[zf].ctx);
                 }
                 readyList = [];
             }
@@ -141,9 +141,9 @@ var builtin = [{
 var addclass = function (additions, node) {
     var classes = node.getAttribute('class');
     classes = classes ? classes.split(' ') : [];
-    for (var i in additions) {
-        if (classes.indexOf(additions[i]) === -1) {
-            classes.push(encodeURIComponent(additions[i]));
+    for (var zg in additions) {
+        if (classes.indexOf(additions[zg]) === -1) {
+            classes.push(encodeURIComponent(additions[zg]));
         }
     }
     node.setAttribute('class', classes.join(' ').trim());
@@ -154,8 +154,8 @@ var isolate = function (val, uprefix, node) {
     var current = node.getAttribute(isoattr) ? node.getAttribute(isoattr).split(' ') : [];
     var attr = typeof node.getAttribute(uprefix + val) === type.s ? uprefix + val : null;
     if (!attr) {
-        for (var i in builtin) {
-            attr = typeof node.getAttribute(builtin[i].id + val) === type.s ? builtin[i].id + val : null;
+        for (var zh in builtin) {
+            attr = typeof node.getAttribute(builtin[zh].id + val) === type.s ? builtin[zh].id + val : null;
             if (attr) {
                 current.push(attr);
                 break;
@@ -323,7 +323,7 @@ var onebang = function (settings) {
 
     var branch = function (node) {
         var children = node.childNodes;
-        for (var i in children) branch(children[i]);
+        for (var zi in children) branch(children[zi]);
         process(node);
     }.bind(this);
 
@@ -331,14 +331,14 @@ var onebang = function (settings) {
         var attr = node.attributes;
         if (!attr) return;
         var foundattr = [];
-        for (var i in attr) {
-            var aname = attr[i].name;
+        for (var zj in attr) {
+            var aname = attr[zj].name;
             if (this.options.userBangRegex.test(aname)) {
                 foundattr.push(aname.substr(this.options.userBang.length));
             } else {
-                for (var o in builtin) {
-                    if (builtin[o].regex.test(aname)) {
-                        foundattr.push(aname.substr(builtin[o].len));
+                for (var zm in builtin) {
+                    if (builtin[zm].regex.test(aname)) {
+                        foundattr.push(aname.substr(builtin[zm].len));
                         break;
                     }
                 }
@@ -348,21 +348,21 @@ var onebang = function (settings) {
     }.bind(this);
 
     var bangforbuck = function (node, attrs) {
-        for (var i in attrs) {
-            var m = attrs[i].split(this.options.userConnector);
+        for (var zk in attrs) {
+            var m = attrs[zk].split(this.options.userConnector);
             var v = m[0];
             m.splice(0, 1);
-            if (attrs[i] === '') return;
+            if (attrs[zk] === '') return;
             while (typeof this.q[v] === type.s) v = this.q[v];
             if (typeof this.q[v] !== type.f) {
-                isolate(attrs[i], this.options.userBang, node);
-                error(errorurl('ad', attrs[i], v));
+                isolate(attrs[zk], this.options.userBang, node);
+                error(errorurl('ad', attrs[zk], v));
                 continue;
             }
             var fnopts = this.options.functions[v];
             if (this.q[v]) this.q[v].bind(node)(m, fnopts ? fnopts : {}, this.version, error, log);
-            node.removeAttribute(this.options.userBang + attrs[i]);
-            for (var o in builtin) node.removeAttribute(builtin[o].id + attrs[i]);
+            node.removeAttribute(this.options.userBang + attrs[zk]);
+            for (var zn in builtin) node.removeAttribute(builtin[zn].id + attrs[zk]);
         }
     }.bind(this);
 
@@ -371,9 +371,9 @@ var onebang = function (settings) {
     var bangqueries = [basics];
 
     var updatefn = function () {
-        for (var i in bangqueries) {
-            for (var o in bangqueries[i]) {
-                this.q[o] = bangqueries[i][o];
+        for (var zl in bangqueries) {
+            for (var zo in bangqueries[zl]) {
+                this.q[zo] = bangqueries[zl][zo];
             }
         }
     }.bind(this);
