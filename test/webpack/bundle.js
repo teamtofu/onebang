@@ -394,10 +394,8 @@ var onebang = function (settings) {
     if (!check().mutation) {
         error(errorurl('ac'));
     } else {
-        observer = new MutationObserver(function (mut) {
-            for (var i in mut) {
-                this.interpret();
-            }
+        observer = new MutationObserver(function () {
+            this.interpret();
         }.bind(this));
     }
 
@@ -543,15 +541,20 @@ var ini = function (settings) {
     window[onebangbind] = new onebang(settings);
 };
 
+var modfunction = function (settings) {
+    if (typeof window[onebangbind] === type.f) {
+        ini.bind(this)(settings);
+    }
+    return null;
+};
+
 if (check().window) {
     window[onebangbind] = ini.bind(this);
     if (check().module) {
-        module.exports = ini.bind(this);
+        module.exports = modfunction.bind(this);
     }
-} else if (check().module) {
-    module.exports = ini.bind(this);
 } else {
-    console.error(new Error(errorurl('ag')));
+    throw new Error('(OneBang) ' + errorurl('ag'));
 }
 }());
 
@@ -747,9 +750,14 @@ process.umask = function() { return 0; };
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var onebang = __webpack_require__(0);
-console.log(onebang);
-onebang();
+var init = __webpack_require__(0);
+//use var init = require('onebang'); instead
+init(/* settings */);
+
+/* This also works...
+ * require('onebang');
+ * window.onebang(); //settings
+ */
 
 /***/ })
 /******/ ]);

@@ -28,6 +28,7 @@
         + [onebang.addplugins](#onebangaddplugins)
     + [Aliasing](#aliasing)
 + [Angular](#angular)
++ [Webpack](#webpack)
 + [Intervals](#intervals)
     + [onebang.interval](#onebanginterval)
 + [Manual Interpretation](#manual-interpretation)
@@ -359,6 +360,18 @@ This is only necessary if you are using templates (HTML that is not in the body 
     <div ! !s:color:red><div !s:color:blue></div></div>
     <!--<div style="color: red;"><div style="color: blue;"></div></div>-->
 </script>
+```
+
+## Webpack
+
+[Webpack](https://webpack.js.org/) can be used to easily include code from NPM and other sources.
+
+An example of how to use webpack is available under the [test/webpack directory](https://github.com/teamtofu/onebang/tree/master/test/webpack).
+
+```js
+var init = require('onebang');
+init(/* settings */);
+//window.onebang must be used for everything else
 ```
 
 ## Intervals
