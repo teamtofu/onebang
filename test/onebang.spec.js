@@ -9,7 +9,17 @@ window.redirect = function (rdr) {
     }
     window.location.assign(url);
 };
-console.log('%c To see live tests, type in redirect() or redirect(\'angular\') or redirect(\'webpack\').','color:#8124a0;font-size:22px;');
+console.log('%c To see live tests, type in redirect() or redirect(\'angular\') or redirect(\'webpack\').', 'color:#8124a0;font-size:22px;');
+
+var interpret = function (bang) {
+    var holder = document.createElement('div');
+    holder.innerHTML = '<div ' + bang + '></div>';
+    return holder.childNodes[0];
+};
+var errorurl = function (code, varone, vartwo, varthree) {
+    return 'http://teamtofu.github.io/onebang/errors/?error=' + code + '&one=' + encodeURIComponent(varone) + '&two=' + encodeURIComponent(vartwo) + '&three=' + encodeURIComponent(varthree);
+};
+
 
 describe('window.onebang before init', function () {
     it('is a function', function () {
@@ -20,7 +30,7 @@ describe('window.onebang before init', function () {
 describe('window.onebang after init', function () {
     it('is an object', function () {
         onebang({
-            functions:{
+            functions: {
                 exclaim: {
                     default: 'a',
                     one: 'b',
@@ -31,29 +41,20 @@ describe('window.onebang after init', function () {
         expect(typeof onebang).toEqual('object');
     });
     it('has correct attributes', function () {
-        var attr = ['addplugin','addplugins','events','interpret','interval','options','q','version'];
+        var attr = ['addplugin', 'addplugins', 'events', 'interpret', 'interval', 'options', 'q', 'version'];
         for (var i in onebang) {
             expect(attr.indexOf(i)).toBeGreaterThanOrEqual(0);
         }
     });
     it('can interpret !style:color:red', function () {
-        var tests = ['!','__','::','b_','B_','1'];
+        var tests = ['!', '__', '::', 'b_', 'B_', '1'];
         for (var i in tests) {
             var holder = document.createElement('div');
-            holder.innerHTML = '<div '+tests[i]+'style:color:red></div>';
+            holder.innerHTML = '<div ' + tests[i] + 'style:color:red></div>';
             var element = holder.childNodes[0];
             expect(onebang.interpret(element).getAttribute('style')).toBe('color: red;');
         }
     });
-    var interpret = function (bang) {
-        var holder = document.createElement('div');
-        holder.innerHTML = '<div '+bang+'></div>';
-        return holder.childNodes[0];
-    };
-    var errorurl = function (code, varone, vartwo, varthree) {
-        return 'http://teamtofu.github.io/onebang/errors/?error=' + code + '&one=' + encodeURIComponent(varone) + '&two=' + encodeURIComponent(vartwo) + '&three=' + encodeURIComponent(varthree);
-    };
-
     it('1! error !', function () {
         var element = interpret('!');
         var int = onebang.interpret(element);
@@ -62,8 +63,8 @@ describe('window.onebang after init', function () {
     it('1! error !notrealfn B_fake', function () {
         var element = interpret('!notrealfn B_fake');
         var int = onebang.interpret(element);
-        expect(onebang.events[0]).toBe(errorurl('ad','notrealfn','notrealfn'));
-        expect(onebang.events[1]).toBe(errorurl('ad','fake','fake'));
+        expect(onebang.events[0]).toBe(errorurl('ad', 'notrealfn', 'notrealfn'));
+        expect(onebang.events[1]).toBe(errorurl('ad', 'fake', 'fake'));
     });
 
     it('1! console !console:log', function () {
@@ -102,7 +103,7 @@ describe('window.onebang after init', function () {
         var int = onebang.interpret(element);
         expect(int.getAttribute('class')).toBe('test1 test2');
     });
-    
+
     it('1! hash !#', function () {
         var element = interpret('!#');
         var int = onebang.interpret(element);
@@ -206,7 +207,7 @@ describe('window.onebang after init', function () {
         var int = onebang.interpret(element);
         expect(int.getAttribute('class')).toBe('b');
     });
-    
+
     it('1! style !style:color:blue !style:font-size:10px', function () {
         var element = interpret('!style:color:blue !style:font-size:10px');
         var int = onebang.interpret(element);
@@ -238,5 +239,51 @@ describe('window.onebang after init', function () {
         var int = onebang.interpret(element);
         expect(int.getAttribute('style')).toBe('display: none;');
     });
-    
+
+});
+
+describe('window.onebang addons', function () {
+
+    it('1! addon !height:7vmax', function () {
+        var element = interpret('!h:7vmax');
+        var int = onebang.interpret(element);
+        expect(int.getAttribute('style')).toBe('height: 7vmax;');
+    });
+
+    it('1! addon !width:5%', function () {
+        var element = interpret('!w:5%');
+        var int = onebang.interpret(element);
+        expect(int.getAttribute('style')).toBe('width: 5%;');
+    });
+
+    it('1! addon !min-height:3em', function () {
+        var element = interpret('!min-height:3em');
+        var int = onebang.interpret(element);
+        expect(int.getAttribute('style')).toBe('min-height: 3em;');
+    });
+
+    it('1! addon !min-width:3em', function () {
+        var element = interpret('!min-width:3em');
+        var int = onebang.interpret(element);
+        expect(int.getAttribute('style')).toBe('min-width: 3em;');
+    });
+
+    it('1! addon !max-height:3em', function () {
+        var element = interpret('!max-height:3em');
+        var int = onebang.interpret(element);
+        expect(int.getAttribute('style')).toBe('max-height: 3em;');
+    });
+
+    it('1! addon !max-width:3em', function () {
+        var element = interpret('!max-width:3em');
+        var int = onebang.interpret(element);
+        expect(int.getAttribute('style')).toBe('max-width: 3em;');
+    });
+
+    it('1! addon !center', function () {
+        var element = interpret('!center');
+        var int = onebang.interpret(element);
+        expect(int.getAttribute('style')).toBe('text-align: center; display: block; margin-left: auto; margin-right: auto;');
+    });
+
 });

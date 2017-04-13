@@ -145,6 +145,7 @@ var isolate = function (val, uprefix, node) {
 };
 
 /*basics*/
+/*styling*/
 
 var onebang = function (settings) {
 
@@ -269,7 +270,12 @@ var onebang = function (settings) {
                 continue;
             }
             var fnopts = this.options.functions[v];
-            if (this.q[v]) this.q[v].bind(node)(m, fnopts ? fnopts : {}, this.version, error, log);
+            try {
+                if (this.q[v]) this.q[v].bind(node)(m, fnopts ? fnopts : {}, this.version, error, log);
+            } catch (e) {
+                error('Function "' + v + '" from "' + attrs[zk] + '" failed.');
+                if (check().console) console.error(e);
+            }
             node.removeAttribute(this.options.userBang + attrs[zk]);
             for (var zn in builtin) node.removeAttribute(builtin[zn].id + attrs[zk]);
         }
@@ -277,7 +283,7 @@ var onebang = function (settings) {
 
     this.q = {};
 
-    var bangqueries = [basics];
+    var bangqueries = [basics, styling];
 
     var updatefn = function () {
         for (var zl in bangqueries) {

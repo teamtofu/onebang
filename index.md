@@ -20,6 +20,7 @@
     + [Icon](#icon)
     + [Exclaim](#exclaim)
     + [Hide](#hide)
+    + [Additional OneBangs](#additional-onebangs)
 + [Plugins](#plugins)
     + [What is a plugin?](#what-is-a-plugin)
     + [How do OneBang functions work?](#how-do-onebang-functions-work)
@@ -229,6 +230,10 @@ Accepts: None
 ```html
 <div !hide></div> <!-- <div style="display:none;"></div> -->
 ```
+
+### Additional OneBangs
+
+These are the basic, most important OneBangs, but there are more included. Review the [additional OneBang documentation](/docs/addons) for extras.
 
 ## Plugins
 

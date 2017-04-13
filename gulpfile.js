@@ -13,6 +13,7 @@ gulp.task('dist', function() {
     .pipe(insert({
         "/*angular*/": "./src/angular/index.js",
         "/*basics*/": "./src/basics/index.js",
+        "/*styling*/": "./src/addons/styling.js",
     }))
     .pipe(replace({regex:'una-version', replace: package.version}))
     .pipe(iife())

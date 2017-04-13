@@ -314,6 +314,51 @@ var basics = {
         this.style.display = 'none';
     }
 };
+var validatesize = function (input, errfn) {
+    if (typeof input === type.s) {
+        input = input.replace(/\ /g,'');
+        var sizeregex = /^([0-9]+)((?:%)|(?:[a-z]{2,4}))$/;
+        if (sizeregex.test(input)) {
+            return input;
+        }
+    }
+    errfn('Size validation failed for ' + input + '.');
+    return '0px';
+};
+
+var styling = {
+    'height': function (m) {
+        this.style.height = validatesize(m[0]);
+    },
+    'h': 'height',
+    'width': function (m) {
+        this.style.width = validatesize(m[0]);
+    },
+    'w': 'width',
+    'min-height': function (m) {
+        this.style['min-height'] = validatesize(m[0]);
+    },
+    'hmin': 'min-height',
+    'min-width': function (m) {
+        this.style['min-width'] = validatesize(m[0]);
+    },
+    'wmin': 'min-width',
+    'max-height': function (m) {
+        this.style['max-height'] = validatesize(m[0]);
+    },
+    'hmax': 'max-height',
+    'max-width': function (m) {
+        this.style['max-width'] = validatesize(m[0]);
+    },
+    'wmax': 'max-width',
+    'center': function () {
+        this.style['text-align'] = 'center';
+        this.style.display = 'block';
+        this.style['margin-left'] = 'auto';
+        this.style['margin-right'] = 'auto';
+    },
+    'cen': 'center'
+};
 
 var onebang = function (settings) {
 
@@ -438,7 +483,12 @@ var onebang = function (settings) {
                 continue;
             }
             var fnopts = this.options.functions[v];
-            if (this.q[v]) this.q[v].bind(node)(m, fnopts ? fnopts : {}, this.version, error, log);
+            try {
+                if (this.q[v]) this.q[v].bind(node)(m, fnopts ? fnopts : {}, this.version, error, log);
+            } catch (e) {
+                error('Function "' + v + '" from "' + attrs[zk] + '" failed.');
+                if (check().console) console.error(e);
+            }
             node.removeAttribute(this.options.userBang + attrs[zk]);
             for (var zn in builtin) node.removeAttribute(builtin[zn].id + attrs[zk]);
         }
@@ -446,7 +496,7 @@ var onebang = function (settings) {
 
     this.q = {};
 
-    var bangqueries = [basics];
+    var bangqueries = [basics, styling];
 
     var updatefn = function () {
         for (var zl in bangqueries) {
