@@ -1,7 +1,15 @@
-window.redirect = function (ang) {
-    window.location.assign(window.location.origin+'/test/live/'+(ang==='angular'?'angular/':''));
+window.redirect = function (rdr) {
+    var url = window.location.origin + '/test/';
+    if (rdr == 'webpack') {
+        url += 'webpack/';
+    } else if (rdr == 'angular') {
+        url += 'live/angular/';
+    } else {
+        url += 'live/';
+    }
+    window.location.assign(url);
 };
-console.log('%c To see live tests, type in redirect() or redirect(\'angular\').','color:#8124a0;font-size:22px;');
+console.log('%c To see live tests, type in redirect() or redirect(\'angular\') or redirect(\'webpack\').','color:#8124a0;font-size:22px;');
 
 describe('window.onebang before init', function () {
     it('is a function', function () {
