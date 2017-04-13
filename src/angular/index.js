@@ -12,7 +12,7 @@ if (check().angular) {
         };
     });
     var linking = function () {return {
-        link: function ($scope, dom, attrs) {
+        link: function ($scope, dom) {
             if (typeof dom[0] === type.o) dom = dom[0];
             window.onebang.interpret(dom);
         }

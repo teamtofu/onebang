@@ -12,7 +12,7 @@ var type = {
 
 var has = {};
 
-var check = function (item) {
+var check = function () {
     var items = {
         angular: (typeof angular === type.o) && !!angular,
         console: (typeof console === type.o) && !!console && !!console.log && !!console.error && !!console.info,
@@ -176,22 +176,20 @@ var onebang = function (settings) {
 
     has.settings = (typeof settings === type.o) && !!settings;
 
-    var i, o;
-
     if (check().settings) {
-        for (i in settings) this.options[i] = settings[i];
+        for (var za in settings) this.options[za] = settings[za];
     }
 
-    for (i in verifyopt) {
-        if (verifyopt[i].split('&').indexOf(typeof this.options[i]) === -1) {
-            throw new Error(errorurl('ah', i, typeof this.options[i], verifyopt[i]));
+    for (var zb in verifyopt) {
+        if (verifyopt[zb].split('&').indexOf(typeof this.options[zb]) === -1) {
+            throw new Error(errorurl('ah', zb, typeof this.options[zb], verifyopt[zb]));
         }
     }
 
-    for (o in this.options.removeBangPrefixes) {
-        for (i in builtin) {
-            if (this.options.removeBangPrefixes === builtin[i].id) {
-                builtin = builtin.splice(i, 1);
+    for (var zc in this.options.removeBangPrefixes) {
+        for (var zd in builtin) {
+            if (this.options.removeBangPrefixes[zc] === builtin[zd].id) {
+                builtin = builtin.splice(zd, 1);
                 break;
             }
         }

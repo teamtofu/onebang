@@ -39,7 +39,7 @@ var basics = {
             this.removeAttribute('id');
         }
     },
-    'exclaim': function (m, options, version, error, log) {
+    'exclaim': function (m, options, version, error) {
         if (typeof options !== type.o || !options) return;
         var additions = [];
         if (!options.default) options.default = '';

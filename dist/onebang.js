@@ -36,7 +36,7 @@ var type = {
 
 var has = {};
 
-var check = function (item) {
+var check = function () {
     var items = {
         angular: (typeof angular === type.o) && !!angular,
         console: (typeof console === type.o) && !!console && !!console.log && !!console.error && !!console.info,
@@ -209,7 +209,7 @@ var basics = {
             this.removeAttribute('id');
         }
     },
-    'exclaim': function (m, options, version, error, log) {
+    'exclaim': function (m, options, version, error) {
         if (typeof options !== type.o || !options) return;
         var additions = [];
         if (!options.default) options.default = '';
@@ -267,22 +267,20 @@ var onebang = function (settings) {
 
     has.settings = (typeof settings === type.o) && !!settings;
 
-    var i, o;
-
     if (check().settings) {
-        for (i in settings) this.options[i] = settings[i];
+        for (var za in settings) this.options[za] = settings[za];
     }
 
-    for (i in verifyopt) {
-        if (verifyopt[i].split('&').indexOf(typeof this.options[i]) === -1) {
-            throw new Error(errorurl('ah', i, typeof this.options[i], verifyopt[i]));
+    for (var zb in verifyopt) {
+        if (verifyopt[zb].split('&').indexOf(typeof this.options[zb]) === -1) {
+            throw new Error(errorurl('ah', zb, typeof this.options[zb], verifyopt[zb]));
         }
     }
 
-    for (o in this.options.removeBangPrefixes) {
-        for (i in builtin) {
-            if (this.options.removeBangPrefixes === builtin[i].id) {
-                builtin = builtin.splice(i, 1);
+    for (var zc in this.options.removeBangPrefixes) {
+        for (var zd in builtin) {
+            if (this.options.removeBangPrefixes[zc] === builtin[zd].id) {
+                builtin = builtin.splice(zd, 1);
                 break;
             }
         }
@@ -318,10 +316,8 @@ var onebang = function (settings) {
     if (!check().mutation) {
         error(errorurl('ac'));
     } else {
-        observer = new MutationObserver(function (mut) {
-            for (var i in mut) {
-                this.interpret();
-            }
+        observer = new MutationObserver(function () {
+            this.interpret();
         }.bind(this));
     }
 
@@ -452,7 +448,7 @@ if (check().angular) {
         };
     });
     var linking = function () {return {
-        link: function ($scope, dom, attrs) {
+        link: function ($scope, dom) {
             if (typeof dom[0] === type.o) dom = dom[0];
             window.onebang.interpret(dom);
         }

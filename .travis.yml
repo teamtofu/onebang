@@ -4,5 +4,5 @@ node_js:
   - "7"
   - "6"
 before_script:
-  - npm i -g gulp jshint && npm config set runtime travis -g
-script: gulp && jshint ./dist/onebang.js --verbose && jshint ./dist/onebang.min.js --verbose
+  - npm i -g gulp jshint eslint && npm config set runtime travis -g
+script: gulp && jshint ./dist/onebang.js --verbose && eslint -c .eslintrc.json dist/onebang.js
