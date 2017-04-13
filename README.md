@@ -1,5 +1,6 @@
 # OneBang 
 [![NPM version](https://nodei.co/npm/onebang.png)](https://npmjs.org/package/onebang)
+[![Build Status](https://travis-ci.org/teamtofu/onebang.svg?branch=master)](https://travis-ci.org/teamtofu/onebang)
 
 > One Bang (aka 1!) turns html attributes starting with ! into an easy way to write code shorthand.
 
