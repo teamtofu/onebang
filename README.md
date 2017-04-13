@@ -9,7 +9,7 @@
 $ npm install --save onebang
 ```
 
-Read the docs [here](https://onebang.js.org/).
+Read the docs [here](https://onebang.js.org/) and check out the tests [here](https://onebang.js.org/test/).
 
 ## Example
 

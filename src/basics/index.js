@@ -1,7 +1,7 @@
 var basics = {
     'console': function (m) {
         for (var i in m) {
-            if (has.console) console.log(m[i]);
+            if (check().console) console.log(m[i]);
         }
     },
     'class': function (m) {

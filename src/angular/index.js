@@ -1,4 +1,4 @@
-if (has.angular) {
+if (check().angular) {
     var app = angular.module('oneBang', []);
     app.factory('$oneBang', function () {
         var traversedom = function (opts) {

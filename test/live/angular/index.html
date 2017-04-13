@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html ng-app="test">
+
+<head>
+    <title>Test 1!</title>
+
+    <script type="text/ng-template" id="/template.html">
+        <div !s:color:red>Content</div>
+    </script>
+</head>
+
+<body !>
+    <div>
+        <h1 !style:text-align:center>1! Tests</h1>
+    </div>
+    <hr>
+    <div error>
+        <h2>Errors</h2>
+        <code>&lt;div !&gt;&lt;/div&gt;</code>
+        <div !>test 1</div>
+        <code>&lt;div !notrealfn B_fake&gt;&lt;/div&gt;</code>
+        <div !notrealfn B_fake>test 2</div>
+    </div>
+    <div console>
+        <h2>Console</h2>
+        <code>&lt;div !console:OneBang_Tests&gt;&lt;/div&gt;</code>
+        <div !console:OneBang_Tests>test 1</div>
+    </div>
+    <div class>
+        <h2>Class</h2>
+        <code>&lt;div !class:test1&gt;&lt;/div&gt;</code>
+        <div !class:test1>test 1</div>
+        <code>&lt;div !class:&gt;&lt;/div&gt;</code>
+        <div !class:>test 2</div>
+        <code>&lt;div !class&gt;&lt;/div&gt;</code>
+        <div !class>test 3</div>
+        <code>&lt;div !class:test1:test2&gt;&lt;/div&gt;</code>
+        <div !class:test1:test2>test 4</div>
+        <code>&lt;div !class:test1:test2 class="remain"&gt;&lt;/div&gt;</code>
+        <div !class:test1:test2 class="remain">test 5</div>
+        <code>&lt;div !class:test1:test2 class="test1"&gt;&lt;/div&gt;</code>
+        <div !class:test1:test2 class="test1">test 6</div>
+    </div>
+    <div hash>
+        <h2>Hash</h2>
+        <code>&lt;div !#&gt;&lt;/div&gt;</code>
+        <div !#>test 1</div>
+        <code>&lt;div !#:test1&gt;&lt;/div&gt;</code>
+        <div !#:test1>test 2</div>
+        <code>&lt;div !#:test1 href="/"&gt;&lt;/div&gt;</code>
+        <div !#:test1 href="/">test 3</div>
+        <code>&lt;div !#:test1 href="#"&gt;&lt;/div&gt;</code>
+        <div !#:test1 href="#">test 4</div>
+        <code>&lt;div !#:test1 href="#test"&gt;&lt;/div&gt;</code>
+        <div !#:test1 href="#test">test 5</div>
+    </div>
+    <div icon>
+        <h2>Icon</h2>
+        <code>&lt;div !icon:fa:test&gt;&lt;/div&gt;</code>
+        <div !icon:fa:test>test 1</div>
+        <code>&lt;div !i:gly:test&gt;&lt;/div&gt;</code>
+        <div !i:gly:test>test 2</div>
+        <code>&lt;div !i:ion:test&gt;&lt;/div&gt;</code>
+        <div !i:ion:test>test 3</div>
+        <code>&lt;div !i:oi:test&gt;&lt;/div&gt;</code>
+        <div !i:oi:test>test 4</div>
+        <code>&lt;div !i:fa:test:5&gt;&lt;/div&gt;</code>
+        <div !i:fa:test:5>test 5</div>
+        <code>&lt;div !i:fa:test:5:s&gt;&lt;/div&gt;</code>
+        <div !i:fa:test:5:s>test 6</div>
+    </div>
+    <div id>
+        <h2>ID</h2>
+        <code>&lt;div !id:test&gt;&lt;/div&gt;</code>
+        <div !id:test>test 1</div>
+    </div>
+    <div exclaim>
+        <h2>Exclaim</h2>
+        <code>&lt;div !!:default&gt;&lt;/div&gt;</code>
+        <div !!:default>test 1</div>
+        <code>&lt;div !!:one&gt;&lt;/div&gt;</code>
+        <div !!:one>test 2</div>
+        <code>&lt;div !!::one&gt;&lt;/div&gt;</code>
+        <div !!::one>test 3</div>
+        <code>&lt;div !!:one:two&gt;&lt;/div&gt;</code>
+        <div !!:one:two>test 4</div>
+        <code>&lt;div !!&gt;&lt;/div&gt;</code>
+        <div !!>test 5</div>
+        <code>&lt;div !! !!:one&gt;&lt;/div&gt;</code>
+        <div !! !!:one>test 6</div>
+        <code>&lt;div !!:one:&gt;&lt;/div&gt;</code>
+        <div !!:one:>test 7</div>
+        <code>&lt;div !!:one:invalid&gt;&lt;/div&gt;</code>
+        <div !!:one:invalid>test 8</div>
+    </div>
+    <div style>
+        <h2>Style</h2>
+        <code>&lt;div !style:color:blue !style:font-size:10px&gt;&lt;/div&gt;</code>
+        <div !style:color:blue !style:font-size:10px>test 1</div>
+        <code>&lt;div !style:notreal:blue&gt;&lt;/div&gt;</code>
+        <div !style:notreal:blue>test 2</div>
+        <code>&lt;div !style&gt;&lt;/div&gt;</code>
+        <div !style>test 3</div>
+        <code>&lt;div !style:fake&gt;&lt;/div&gt;</code>
+        <div !style:fake>test 4</div>
+    </div>
+    <div hide>
+        <h2>Hide</h2>
+        <code>&lt;div !hide&gt;&lt;/div&gt;</code>
+        <div !hide>test 1</div>
+    </div>
+    <hr>
+    <div>
+        MIT &copy; Russell Steadman
+    </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.min.js"></script>
+<script src="../../../dist/onebang.js"></script>
+<script>
+    var app = angular.module('test',['oneBang']);
+    app.run(['$oneBang',function($onebang) {
+        $onebang({
+            developerMode: true,
+            debugMode: true,
+            functions: {
+                exclaim: {
+                    default: 'testdef',
+                    one: 'test1',
+                    two: 'test2'
+                }
+            }
+        });
+    }]);
+</script>
+
+</html>
