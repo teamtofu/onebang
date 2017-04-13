@@ -12,3 +12,4 @@ cache:
     - $(npm config get prefix)/bin/gulp
     - $(npm config get prefix)/bin/jshint
     - $(npm config get prefix)/bin/eslint
+    - ./node_modules
