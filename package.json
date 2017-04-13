@@ -1,6 +1,6 @@
 {
   "name": "onebang",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "One Bang (aka 1!) turns attributes starting with ! into an easy way to write code shorthand.",
   "main": "index.js",
   "directories": {

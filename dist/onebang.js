@@ -22,7 +22,7 @@
 ;(function() {
 "use strict";
 
-// Version: 1.0.1
+// Version: 1.0.2
 var onebangbind = 'onebang';
 
 var type = {
@@ -239,7 +239,7 @@ var basics = {
 
 var onebang = function (settings) {
 
-    this.version = '1.0.1';
+    this.version = '1.0.2';
 
     this.options = {
         developerMode: false,
