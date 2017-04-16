@@ -1,0 +1,31 @@
+{
+  "name": "onebang",
+  "description": "OneBang (aka 1!) turns attributes starting with ! into an easy way to write code shorthand.",
+  "main": "index.js",
+  "authors": [
+    "Russell Steadman"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "one",
+    "bang",
+    "attribute",
+    "html",
+    "dom",
+    "plugin",
+    "addon"
+  ],
+  "homepage": "https://github.com/teamtofu/onebang",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "_config.yml",
+    "errors",
+    "docs",
+    "CNAME",
+    "index.md"
+  ]
+}

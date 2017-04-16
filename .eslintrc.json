@@ -26,7 +26,7 @@
         "callback-return": "error",
         "camelcase": "error",
         "capitalized-comments": [
-            "error",
+            "off",
             "always"
         ],
         "class-methods-use-this": "error",
@@ -123,7 +123,7 @@
         "no-extra-parens": "warn",
         "no-extra-semi": "off",
         "no-floating-decimal": "error",
-        "no-implicit-globals": "error",
+        "no-implicit-globals": "off",
         "no-implied-eval": "error",
         "no-inline-comments": "error",
         "no-inner-declarations": [
@@ -264,7 +264,7 @@
         "space-infix-ops": "error",
         "space-unary-ops": "error",
         "spaced-comment": "off",
-        "strict": "error",
+        "strict": "off",
         "symbol-description": "error",
         "template-curly-spacing": "error",
         "template-tag-spacing": "error",

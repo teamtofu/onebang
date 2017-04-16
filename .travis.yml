@@ -7,9 +7,3 @@ before_script:
   - npm i -g gulp jshint eslint && npm config set runtime travis -g
 script:
   - gulp && jshint ./dist/onebang.js --verbose && eslint -c .eslintrc.json dist/onebang.js
-cache:
-  directories:
-    - $(npm config get prefix)/bin/gulp
-    - $(npm config get prefix)/bin/jshint
-    - $(npm config get prefix)/bin/eslint
-    - ./node_modules

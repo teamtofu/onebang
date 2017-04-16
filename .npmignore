@@ -7,3 +7,4 @@ docs
 CNAME
 index.md
 node_modules
+.vscode

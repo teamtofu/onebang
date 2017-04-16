@@ -1,5 +1,6 @@
 # OneBang 
 [![NPM version](https://nodei.co/npm/onebang.png)](https://npmjs.org/package/onebang)
+[![Build Status](https://travis-ci.org/teamtofu/onebang.svg?branch=master)](https://travis-ci.org/teamtofu/onebang)
 
 > OneBang (aka 1!) turns html attributes starting with ! into an easy way to write code shorthand.
 
@@ -34,6 +35,7 @@
     + [onebang.interval](#onebanginterval)
 + [Manual Interpretation](#manual-interpretation)
     + [onebang.interpret](#onebanginterpret)
++ [Testing](#testing)
 + [License](#license)
 
 ## Installation
@@ -384,10 +386,10 @@ init(/* settings */);
 OneBang makes use of [MutationObserver](http://caniuse.com/#feat=mutationobserver) which is supported by the modern version of all modern browsers with the sole exception of Opera Mini (which doesn't support many other Javascript features).
 
 <p class="ciu_embed" data-feature="mutationobserver" data-periods="future_1,current,past_1,past_2">
-  <a href="http://caniuse.com/#feat=mutationobserver">Can I Use mutationobserver?</a> Data on support for the mutationobserver feature across the major browsers from caniuse.com.
+  <a href="http://caniuse.com/#feat=mutationobserver">Can I Use mutationobserver?</a>
 </p>
 
-<script async defer src="//cdn.jsdelivr.net/caniuse-embed/1.0.1/caniuse-embed.min.js"></script>
+<script async defer src="https://cdn.jsdelivr.net/caniuse-embed/1.0.1/caniuse-embed.min.js"></script>
 
 However, intervals are available for use to ensure that websites using templates can support older browsers.
 
@@ -412,6 +414,18 @@ example.setAttribute('b_style:color:red','');
 onebang.interpret(example);
 // example -> <div style="color: red;"></div>
 ```
+
+## Testing
+
+> OneBang undergoes a lot of testing to ensure functionality.
+
+<iframe src="test/index.html" style="width: 100%; min-height: 50vh;"></iframe>
+
+To view all tests go [here](/test/index.html) and open the browser's console.
+
+[![Build Status](https://travis-ci.org/teamtofu/onebang.svg?branch=master)](https://travis-ci.org/teamtofu/onebang)
+
+Syntax checks are also available [here](https://travis-ci.org/teamtofu/onebang).
 
 ## License
 

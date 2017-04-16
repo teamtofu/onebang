@@ -2,3 +2,4 @@
 
 + [Main Documentation](/)
 + [Additional OneBangs](/addons)
++ [OneBang Stats](/stats)
