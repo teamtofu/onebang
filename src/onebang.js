@@ -146,7 +146,18 @@ var isolate = function (val, uprefix, node) {
 
 /*basics*/
 /*styling*/
+/*external*/
 
+/**
+ * @constructor
+ * @param {object} settings An instance of the OneBang settings object
+ * @property {string} version The version of OneBang being run
+ * @property {object} options The full settings object for OneBang
+ * @property {object} events An array of all log and error events
+ * @property {object} q A cache of all functions and aliases used in resolution
+ * @property {function} interpret A function that interprets a DOM object
+ * @property {function} interval A function that sets an interval for interpretation
+ */
 var onebang = function (settings) {
 
     this.version = 'una-version';
@@ -283,13 +294,16 @@ var onebang = function (settings) {
 
     this.q = {};
 
-    var bangqueries = [basics, styling];
+    var bangqueries = [basics, styling, external];
 
     var updatefn = function () {
         for (var zl in bangqueries) {
             for (var zo in bangqueries[zl]) {
                 this.q[zo] = bangqueries[zl][zo];
             }
+        }
+        for (var zq in this.q) {
+            if (typeof this.q[zq] === type.f && !this.options.functions[zq]) this.options.functions[zq] = {};
         }
     }.bind(this);
     updatefn();

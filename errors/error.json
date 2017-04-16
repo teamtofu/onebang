@@ -8,5 +8,7 @@
     "ag":"There is no window object for OneBang to attach.",
     "ah":"OneBang settings: @1 was @2, expected @3.",
     "ai":"The OneBang !exclaim doesn't have the \"@1\" variable.",
-    "aj":"The OneBang !style doesn't have two variables."
+    "aj":"The OneBang !style doesn't have two variables.",
+    "ak":"Size validation failed for \"@1\".",
+    "al":"No YouTube ID was included in the OneBang !youtube settings."
 }

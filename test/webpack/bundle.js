@@ -100,7 +100,7 @@ module.exports=__webpack_require__(1);
 ;(function() {
 "use strict";
 
-// Version: 1.0.2
+// Version: 1.0.3
 var onebangbind = 'onebang';
 
 var type = {
@@ -314,55 +314,92 @@ var basics = {
         this.style.display = 'none';
     }
 };
-var validatesize = function (input, errfn) {
-    if (typeof input === type.s) {
-        input = input.replace(/\ /g,'');
-        var sizeregex = /^([0-9]+)((?:%)|(?:[a-z]{2,4}))$/;
-        if (sizeregex.test(input)) {
-            return input;
-        }
+var validatecolor = function (input) {
+    if (input[0] === 'hex') {
+        return '#' + input[1];
+    } else if (input[0] === 'rgb') {
+        return 'rgb(' + input[1] + ',' + input[2] + ',' + input[3] + (input[4] ? ',' + input[4] : '') + ')';
     }
-    errfn('Size validation failed for ' + input + '.');
-    return '0px';
+    return input[0] || '#000000';
 };
 
 var styling = {
-    'height': function (m) {
-        this.style.height = validatesize(m[0]);
-    },
+    //
     'h': 'height',
-    'width': function (m) {
-        this.style.width = validatesize(m[0]);
-    },
     'w': 'width',
-    'min-height': function (m) {
-        this.style['min-height'] = validatesize(m[0]);
-    },
     'hmin': 'min-height',
-    'min-width': function (m) {
-        this.style['min-width'] = validatesize(m[0]);
-    },
     'wmin': 'min-width',
-    'max-height': function (m) {
-        this.style['max-height'] = validatesize(m[0]);
-    },
     'hmax': 'max-height',
-    'max-width': function (m) {
-        this.style['max-width'] = validatesize(m[0]);
-    },
     'wmax': 'max-width',
+    'cen': 'center',
+    'clr': 'color',
+    'bgclr': 'background-color',
+    'ma': 'margin',
+    'mal': 'margin-left',
+    'mar': 'margin-right',
+    'mat': 'margin-top',
+    'mab': 'margin-bottom',
+    'pa': 'padding',
+    'pal': 'padding-left',
+    'par': 'padding-right',
+    'pat': 'padding-top',
+    'pab': 'padding-bottom',
+    //
     'center': function () {
         this.style['text-align'] = 'center';
         this.style.display = 'block';
         this.style['margin-left'] = 'auto';
         this.style['margin-right'] = 'auto';
     },
-    'cen': 'center'
+    'color': function (m) {
+        this.style.color = validatecolor(m);
+    },
+    'background-color': function (m) {
+        this.style['background-color'] = validatecolor(m);
+    }
 };
 
+var styadd = function (sty) {
+    styling[sty] = function (m) {
+        this.style[sty] = m.join(' ');
+    };
+};
+
+var stylistadd = ['margin','margin-top','margin-bottom','margin-left','margin-right',
+'padding','padding-top','padding-bottom','padding-left','padding-right',
+'position','display','opacity', 'height','min-height','max-height',
+'width','min-width','max-width'];
+
+for (var zx in stylistadd) styadd(stylistadd[zx]);
+var external = {
+    'youtube': function (m,opts,v,e) {
+        var ytid = this.getAttribute('ytid');
+        for (var i in opts) {
+            if (m[0] && m[0] === i && m[0] !== 'none') ytid = opts[i];
+        }
+        if (!ytid || !(/[a-zA-Z0-9_-]{8,12}/).test(ytid)) return e(errorurl('al'));
+        var ythtml = '<iframe type="text/html" width="' + (m[2] ? m[2] : '640') + '" height="' + (m[1] ? m[1] : '360') + '" ';
+        ythtml += 'src="https://www.youtube.com/embed/' + ytid + '" allowfullscreen="" frameborder="0"></iframe>';
+        this.innerHTML = ythtml;
+
+        /* YouTube ID: jNZwZA06oNs */
+    },
+    'yt': 'youtube'
+};
+
+/**
+ * @constructor
+ * @param {object} settings An instance of the OneBang settings object
+ * @property {string} version The version of OneBang being run
+ * @property {object} options The full settings object for OneBang
+ * @property {object} events An array of all log and error events
+ * @property {object} q A cache of all functions and aliases used in resolution
+ * @property {function} interpret A function that interprets a DOM object
+ * @property {function} interval A function that sets an interval for interpretation
+ */
 var onebang = function (settings) {
 
-    this.version = '1.0.2';
+    this.version = '1.0.3';
 
     this.options = {
         developerMode: false,
@@ -496,13 +533,16 @@ var onebang = function (settings) {
 
     this.q = {};
 
-    var bangqueries = [basics, styling];
+    var bangqueries = [basics, styling, external];
 
     var updatefn = function () {
         for (var zl in bangqueries) {
             for (var zo in bangqueries[zl]) {
                 this.q[zo] = bangqueries[zl][zo];
             }
+        }
+        for (var zq in this.q) {
+            if (typeof this.q[zq] === type.f && !this.options.functions[zq]) this.options.functions[zq] = {};
         }
     }.bind(this);
     updatefn();

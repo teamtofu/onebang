@@ -1,13 +1,13 @@
 {
   "name": "onebang",
-  "version": "1.0.2",
-  "description": "One Bang (aka 1!) turns attributes starting with ! into an easy way to write code shorthand.",
+  "version": "1.0.3",
+  "description": "OneBang (aka 1!) turns attributes starting with ! into an easy way to write code shorthand.",
   "main": "index.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Use http-server (npm) and open the test directory.\" && exit 1",
+    "test": "echo \"Use http-server (npm) and open the test directory.\" && exit 0",
     "gulp": "gulp",
     "jshint": "jshint --verbose dist/onebang.js",
     "eslint": "eslint -c .eslintrc.json dist/onebang.js"
@@ -21,7 +21,9 @@
     "bang",
     "attribute",
     "html",
-    "dom"
+    "dom",
+    "plugin",
+    "addon"
   ],
   "author": "Russell Steadman",
   "organization": "Russell Steadman",

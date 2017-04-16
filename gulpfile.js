@@ -14,6 +14,7 @@ gulp.task('dist', function() {
         "/*angular*/": "./src/angular/index.js",
         "/*basics*/": "./src/basics/index.js",
         "/*styling*/": "./src/addons/styling.js",
+        "/*external*/": "./src/addons/external.js"
     }))
     .pipe(replace({regex:'una-version', replace: package.version}))
     .pipe(iife())
