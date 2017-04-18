@@ -1,5 +1,5 @@
 # OneBang Docs
 
 + [Main Documentation](/)
-+ [Additional OneBangs](/addons)
-+ [OneBang Stats](/stats)
++ [Additional OneBangs](addons)
++ [OneBang Stats](stats)
