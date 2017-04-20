@@ -21,9 +21,10 @@
     "bang",
     "attribute",
     "html",
-    "dom",
-    "plugin",
-    "addon"
+    "id",
+    "tutorial",
+    "list",
+    "property"
   ],
   "author": "Russell Steadman",
   "organization": "Russell Steadman",
